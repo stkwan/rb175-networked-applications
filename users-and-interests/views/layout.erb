@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>
+      Users and Interests
+    </title>
+  </head>
+
+  <div id="profile">
+    <p>
+      <%= yield %>
+    </p>  
+  </div>
+
+  <body>
+    <div id="name_list">
+        <p>
+          <ul>
+            <% @contents.keys.each do |name| %>
+              <% if params[:name] %>
+                <% if @name == name %>
+                  <% next %>
+                <% else %>
+                  <li><a href="/<%= name.to_s %>"><%= name.to_s.capitalize %></a></li>
+                <% end %>
+              <% else %>
+                <li><a href="/<%= name.to_s %>"><%= name.to_s.capitalize %></a></li>
+              <% end %>  
+            <% end %>
+          </ul>
+        </p>
+    </div>
+  </body>
+
+  <br>
+
+  <div id="display_totals">
+    <p><em>There are <%= @contents.keys.size %> users with a total of <%= get_total_interests %> interests.</em></p>
+  </div>
+
+</html>

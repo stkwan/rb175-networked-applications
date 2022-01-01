@@ -1,0 +1,21 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit_search">Search</button>
+</form>
+
+<% if params[:query] %>
+  <% if params[:query] == '' %>
+      <p>No input was submitted. Try again.</p>
+  <% elsif find_chapters.empty? %>
+      <p>No results found. Please try again.</p>
+  <% else %>
+      <p>Results for '<%= params[:query] %>'</p>
+      <ul>
+      <% find_chapters.each do |chapter_number| %>
+      <li><a href="/chapters/<%= chapter_number %>"><%= @contents[chapter_number - 1] %></a></li>
+      <% end %>
+      </ul>
+  <% end %>
+<%end%>
